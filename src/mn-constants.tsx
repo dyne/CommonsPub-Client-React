@@ -5,7 +5,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL;
 export const SENTRY_KEY = process.env.REACT_APP_SENTRY_API_KEY;
 export const DEFAULT_PAGE_SIZE = parseInt(`${process.env.REACT_APP_DEFAULT_PAGE_SIZE}`) || 15;
 
-export const APP_NAME = 'ZenPub';
+export const APP_NAME = 'WeLoop';
 export const INSTANCE_DESCRIPTION = 'Federated economic network for Reflow pilots';
 export const INVITE_ONLY_TEXT =
   process.env.REACT_APP_INVITE_ONLY_TEXT ||
@@ -18,9 +18,9 @@ export const my_timeline = 'My Timeline';
 export const instance_bg_img =
   'https://reflowproject.eu/wp-content/uploads/2019/08/reflow-cocreation-1.png';
 export const logo_large_url =
-  'https://pbs.twimg.com/profile_images/1176826011293556738/9jzWwP_g.png';
+  'https://raw.githubusercontent.com/reflow-project/weloop/main/src/static/img/weloop_logo_1200x512.png';
 export const logo_small_url =
-  'https://pbs.twimg.com/profile_images/1176826011293556738/9jzWwP_g.png';
+  'https://raw.githubusercontent.com/reflow-project/weloop/main/src/static/img/weloop_logo_128x128-01.png';
 
 export const terms_markdown_text = {
   // replace the text as needed
@@ -33,16 +33,16 @@ export const terms_markdown_text = {
 export const terms_markdown_urls = {
   // replace the URLs as needed, or enable/disable to use `terms_markdown_text` instead
   enabled: false,
-  terms_users: 'https://moodle.net/terms/users.md',
-  terms_cookies: 'https://moodle.net/terms/cookies.md',
-  terms_indexing: 'https://moodle.net/terms/indexing.md'
+  terms_users: '',
+  terms_cookies: '',
+  terms_indexing: ''
 };
 
 export const terms_privacy = {
   // replace the URLs as needed, or enable/disable to use `text_markdown` instead
   enabled: true,
   // replace the URL with that of your instance's privacy policy (in markdown format)
-  url_markdown: 'https://moodle.net/terms/privacy.md',
+  url_markdown: 'https://reflowproject.eu/privacy-policy',
   // replace the text as needed (in markdown format as well)
   text_markdown:
     'This site uses cookies and follows GDPR rules. Contact the instance operators if you want your data exported or deleted.'
@@ -50,9 +50,9 @@ export const terms_privacy = {
 
 export const related_urls = {
   // replace the URLs as needed
-  project_homepage: 'https://commonspub.org',
-  code: 'https://gitlab.com/CommonsPub',
-  feedback: 'https://zo.team'
+  project_homepage: 'https://weloop.reflowproject.eu',
+  code: 'https://github.com/reflow-project/weloop/',
+  feedback: 'https://github.com/reflow-project/weloop/issues'
 };
 
 export const IS_DEV = NODE_ENV === 'development';
@@ -126,7 +126,7 @@ export const nord = {
   lighter: '#444444',
   light: '#666666',
   mediumlight: '#999999',
-  medium: '#DDDDDD',
+  medium: '#D1D3D8',
   mediumdark: '#EEEEEE',
   dark: '#F3F3F3',
   darker: '#F8F8F8',
@@ -135,12 +135,12 @@ export const nord = {
 };
 
 export const colors = {
-  // Main
+  // Reflow
   app: 'rgb(245, 246, 247)',
   appInverse: '#fff',
-  primary: '#f98012',
-  secondary: '#1EA7FD',
-  tertiary: '#DDDDDD',
+  primary: '#05244F',
+  secondary: '#02e379',
+  tertiary: '#D1D3D8',
 
   // Status
   positive: '#2db783',
@@ -152,7 +152,7 @@ export const colors = {
   lighter: '#F8F8F8',
   light: '#F3F3F3',
   mediumlight: '#EEEEEE',
-  medium: '#DDDDDD',
+  medium: '#D1D3D8',
   mediumdark: '#999999',
   dark: '#666666',
   darker: '#444444',
@@ -162,7 +162,7 @@ export const colors = {
 
 export const typography = {
   type: {
-    primary: '"Open Sans", sans-serif'
+    primary: '"Barlow", "Open Sans", sans-serif'
   },
   size: {
     s1: '12px',
