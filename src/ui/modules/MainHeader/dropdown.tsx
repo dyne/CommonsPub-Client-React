@@ -1,5 +1,16 @@
 import * as React from 'react';
-import { Settings, User, Power, Users } from 'react-feather';
+import {
+  Settings,
+  User,
+  Power,
+  Users,
+  Star,
+  Code,
+  Activity,
+  Package,
+  Plus,
+  PlusSquare
+} from 'react-feather';
 import styled from '../../themes/styled';
 import { Trans } from '@lingui/macro';
 import { useHistory } from 'react-router';
@@ -43,7 +54,6 @@ const ItemButton = styled(Item)`
     background: ${props => props.theme.colors.light};
   }
   div {
-    font-size: 12px;
     letter-spacing: 0;
   }
 `;
@@ -52,17 +62,10 @@ export interface Props {
   logout(): void;
   toggleDropdown: any;
   userLink: string;
-  createCommunity: any;
   isAdmin: boolean;
 }
 
-export const DropdownSidebar: React.FC<Props> = ({
-  logout,
-  userLink,
-  toggleDropdown,
-  isAdmin,
-  createCommunity
-}) => {
+export const DropdownSidebar: React.FC<Props> = ({ logout, userLink, toggleDropdown, isAdmin }) => {
   const { push } = useHistory();
   return (
     <Dropdown orientation={'top'} close={toggleDropdown}>
@@ -72,9 +75,51 @@ export const DropdownSidebar: React.FC<Props> = ({
             <User size={16} color={'#333'} />
           </span>
           <Text variant="text">
-            <Trans>Profile</Trans>
+            <Trans>My Profile</Trans>
           </Text>
         </Item>
+        <Item>
+          <Text variant="text">
+            <a href={`${userLink}/communities`}>
+              <span>
+                <Users size={16} color={'#333'} />
+              </span>
+              <Trans>My Communities</Trans>
+            </a>
+          </Text>
+        </Item>
+        <Item>
+          <Text variant="text">
+            <a href={`${userLink}/inventory`}>
+              <span>
+                <Package size={16} color={'#333'} />
+              </span>
+              <Trans>My Inventory</Trans>
+            </a>
+          </Text>
+        </Item>
+        <Item>
+          <Text variant="text">
+            <a href={`${userLink}`}>
+              <span>
+                <Activity size={16} color={'#333'} />
+              </span>
+              <Trans>My Activity</Trans>
+            </a>
+          </Text>
+        </Item>
+        <Item>
+          <Text variant="text">
+            <a href={`${userLink}/starred`}>
+              <span>
+                <Star size={16} color={'#333'} />
+              </span>
+              <Trans>My favorites</Trans>
+            </a>
+          </Text>
+        </Item>
+      </List>
+      <List>
         <Item variant="link" onClick={() => push('/settings')}>
           <span>
             <Settings size={16} color={'#333'} />
@@ -83,16 +128,51 @@ export const DropdownSidebar: React.FC<Props> = ({
             <Trans>Settings</Trans>
           </Text>
         </Item>
-      </List>
-      {isAdmin && (
-        <List lined>
+        {isAdmin && (
           <ItemButton variant="link" onClick={() => push('/settings/instance')}>
             <Text variant="text" sx={{ flex: 1, textAlign: 'center' }}>
               <Trans>Admin dashboard</Trans>
             </Text>
           </ItemButton>
-        </List>
-      )}
+        )}
+        <Item variant="link">
+          <Text variant="text">
+            <a href="/terms" target="_blank">
+              <span>
+                <Code size={16} />
+              </span>
+              <Trans>Code of Conduct</Trans>
+            </a>
+          </Text>
+        </Item>
+        <Item variant="link" onClick={logout}>
+          <span>
+            <Power size={16} strokeWidth={1} color={'#333'} />
+          </span>
+          <Text variant="text">
+            <Trans>Sign out</Trans>
+          </Text>
+        </Item>
+      </List>
+    </Dropdown>
+  );
+};
+
+type TCreateDropdown = {
+  toggleDropdown: () => void;
+  createCommunity: any;
+  createIntent: () => void;
+  createResource: () => void;
+};
+
+export const CreateDropdown: React.FC<TCreateDropdown> = ({
+  toggleDropdown,
+  createCommunity,
+  createIntent,
+  createResource
+}) => {
+  return (
+    <Dropdown orientation={'top'} close={toggleDropdown}>
       <List lined>
         <Item variant="link" onClick={() => createCommunity()}>
           <span>
@@ -102,24 +182,20 @@ export const DropdownSidebar: React.FC<Props> = ({
             <Trans>New Community</Trans>
           </Text>
         </Item>
-      </List>
-      <List lined>
-        <Item variant="link">
-          <Text variant="text">
-            <a href="/terms" target="_blank">
-              <Trans>Code of Conduct</Trans>
-            </a>
-          </Text>
-        </Item>
-        <Text variant="text">v1.0 beta</Text>
-      </List>
-      <List>
-        <Item variant="link" onClick={logout}>
+        <Item variant="link" onClick={() => createIntent()}>
           <span>
-            <Power size={16} strokeWidth={1} color={'#333'} />
+            <PlusSquare size={16} color={'#333'} />
           </span>
           <Text variant="text">
-            <Trans>Sign out</Trans>
+            <Trans>Create a new intent</Trans>
+          </Text>
+        </Item>
+        <Item variant="link" onClick={() => createResource()}>
+          <span>
+            <Plus size={16} color={'#333'} />
+          </span>
+          <Text variant="text">
+            <Trans>Create a new resource</Trans>
           </Text>
         </Item>
       </List>

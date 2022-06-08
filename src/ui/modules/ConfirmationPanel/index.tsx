@@ -53,16 +53,16 @@ import { Actions, Container, ContainerForm, Header, Row } from 'ui/modules/Modal
 //   );
 // };
 
-export interface ConfirmationPanel {
+export interface ConfirmationPanelProps {
   confirm(): unknown;
   cancel(): unknown;
   title: string;
-  description: string;
+  description?: string;
   action: string;
   waiting: boolean;
 }
 
-export const ConfirmationPanel: React.FC<ConfirmationPanel> = ({
+export const ConfirmationPanel: React.FC<ConfirmationPanelProps> = ({
   title,
   description,
   action,
@@ -74,12 +74,10 @@ export const ConfirmationPanel: React.FC<ConfirmationPanel> = ({
   return (
     <Container>
       <Header>
-        <Heading m={2}>{title}</Heading>
+        <Heading>{title}</Heading>
       </Header>
       <Row>
-        <ContainerForm>
-          <Text>{description}</Text>
-        </ContainerForm>
+        <ContainerForm>{description && <Text>{description}</Text>}</ContainerForm>
       </Row>
       <Actions>
         <SubmitButton
@@ -90,7 +88,7 @@ export const ConfirmationPanel: React.FC<ConfirmationPanel> = ({
           style={{ marginLeft: '10px' }}
           onClick={confirm}
         >
-          {action}
+          <Trans>{action}</Trans>
         </SubmitButton>
         <Button variant="outline" onClick={cancel}>
           <Trans>Cancel</Trans>

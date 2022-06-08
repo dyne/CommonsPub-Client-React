@@ -60,8 +60,7 @@ const DropzoneArea: React.FC<Props> = ({ initialUrl, uploadType, onFileSelect, f
       setCurrentFile({ file, localUrl: URL.createObjectURL(file) });
     }
   });
-  // const rejectedFile = rejectedFiles[0];
-  // console.log({ rejectedFiles, acceptedFiles });
+
   return (
     <>
       <Box sx={{ height: '100%' }} {...getRootProps({ className: 'dropzone' })}>
@@ -194,7 +193,7 @@ const Thumb = styled.div`
   width: 100%;
   box-sizing: border-box;
   position: relative;
-  height: 120px;
+  height: 140px;
   &:after {
     position: absolute;
     content: '';

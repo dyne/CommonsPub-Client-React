@@ -35,6 +35,15 @@ export const WithSidebar: React.FC<SidebarProps> = ({
   const history = useHistory();
   return (
     <Page>
+      <Menu
+        username={username}
+        name={name}
+        userImage={userImage}
+        signout={signout}
+        open={open}
+        setOpen={setOpen}
+        Side={SidebarBox}
+      />
       <SearchBar>
         <Icon onClick={() => history.goBack()}>
           <ChevronLeft size="20" />
@@ -53,15 +62,6 @@ export const WithSidebar: React.FC<SidebarProps> = ({
       <Footer>
         <FootWrapper>
           <Burger open={open} setOpen={setOpen} />
-          <Menu
-            username={username}
-            name={name}
-            userImage={userImage}
-            signout={signout}
-            open={open}
-            setOpen={setOpen}
-            Side={SidebarBox}
-          />
         </FootWrapper>
         <FootWrapper>
           <NavLink to="/">
@@ -97,13 +97,12 @@ const Bavatar = styled(Box)`
     max-width: 36px;
     height: 36px;
     min-width: 36px;
-    margin: 0 auto;
+    margin: 15px auto 0;
     border-radius: 36px;
-    margin-top: 15px;
   }
 `;
 
-const Icon = styled(Box)`
+export const Icon = styled(Box)`
   cursor: pointer;
   height: 40px;
   width: 40px;
@@ -134,7 +133,6 @@ display: flex;
 align-items: center;
 input {
   width: 100%;
-  font-size: 13px;
   border-radius: 4px;
   max-width: 500px;
   height: 40px;
@@ -163,6 +161,11 @@ const FootWrapper = styled(Box)`
 `;
 
 const Footer = styled(Box)`
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 500;
   background: ${props => props.theme.colors.appInverse}
   display: grid;
   border-top: ${props => props.theme.colors.border};
@@ -170,32 +173,26 @@ const Footer = styled(Box)`
   ${media.greaterThan('medium')`
     display: none;
   `}
-
 `;
 
 const Panel = styled(Box)`
   display: grid;
   grid-template-rows: auto;
-  height: calc(100vh - 58px);
   &.panel_sidebar {
     ${media.lessThan('medium')`
     display: none;
   `}
   }
-  ${media.lessThan('medium')`
-  height: calc(100vh - 75px);
-  `}
 `;
 
 const Page = styled(Box)`
-  height: 100vh;
   display: grid;
-  ${media.greaterThan('large')`
-    grid-template-rows: 50px auto;
-    row-gap: 8px;
-  `}
+  // ${media.greaterThan('large')`
+  //   grid-template-rows: 50px auto;
+  //   row-gap: 8px;
+  // `}
   ${media.lessThan('medium')`
-    grid-template-rows: 75px 1fr 75px;
+    display: block;
   `}
 `;
 
@@ -208,10 +205,8 @@ const Wrapper = styled(Box)`
   grid-template-rows: auto;
   grid-template-columns: 240px 1fr;
   column-gap: 8px;
-  height: calc(100vh - 66px);
   `}
   ${media.lessThan('medium')`
-    height: calc(100vh - 150px);
     overflow: overlay;
     grid-template-rows: auto;
     grid-template-columns:1fr;
@@ -231,7 +226,8 @@ const Sidebar = styled(Box)`
 `;
 
 const Content = styled(Box)`
-  overflow: auto;
+  // Enable to put the right side scrollbar next to the content
+  //overflow: auto;
 `;
 
 const Header = styled(Box)`

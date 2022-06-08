@@ -42,7 +42,7 @@ const TermsAndConditionsPage: React.FC<Props> = ({
               </Box>
               <Text variant="suptitle">
                 {' '}
-                Please read the following. By using this instance of MoodleNet you are consenting to
+                Please read the following. By using this instance of WeLoop you are consenting to
                 these agreements.
               </Text>
             </Aware>
@@ -109,7 +109,6 @@ const Right = styled(Box)`
 //     & li {
 //       float: left;
 //       margin-right: 16px;
-//       font-size: 13px;
 //       & a {
 //         color: rgba(0, 0, 0, 0.45);
 //         text-decoration: none;

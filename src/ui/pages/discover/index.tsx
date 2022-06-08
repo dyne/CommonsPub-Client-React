@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro';
 import * as React from 'react';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import {
   Wrapper,
   WrapperCont,
@@ -9,14 +9,15 @@ import {
   HomeBox,
   ObjectsList,
   CollectionsWrapper,
-  MenuList
+  MenuList,
+  ButtonIcon,
+  MenuItem
 } from 'ui/elements/Layout';
 import { Flex, Box, Text } from 'rebass/styled-components';
 import styled from 'ui/themes/styled';
 import { FormikHook } from 'ui/@types/types';
 
 import { LoadMore } from 'ui/modules/Loadmore';
-import { SidePanel } from 'ui/modules/SidePanel';
 import { ReactElement } from 'react';
 
 export interface Props {
@@ -46,7 +47,6 @@ export const Discover: React.FC<Props> = ({
       <HomeBox>
         <WrapperCont>
           <WrapperFeatured>{FeaturedCommunitiesBox}</WrapperFeatured>
-          <WrapperFeatured mt={2}>{FeaturedCollectionsBox}</WrapperFeatured>
           <Wrapper>
             <Menu tabPaths={tabPaths} />
             <Switch>
@@ -68,10 +68,11 @@ export const Discover: React.FC<Props> = ({
           </Wrapper>
         </WrapperCont>
       </HomeBox>
-      <SidePanel />
     </MainContainer>
   );
 };
+const UsersIcon = require('react-feather/dist/icons/users').default;
+const ActivityIcon = require('react-feather/dist/icons/activity').default;
 
 const Menu: React.FC<{ tabPaths: Props['tabPaths'] }> = ({ tabPaths }) => (
   <>
@@ -79,15 +80,24 @@ const Menu: React.FC<{ tabPaths: Props['tabPaths'] }> = ({ tabPaths }) => (
       <Text variant="suptitle">Browse Home instance</Text>
     </Title>
     <MenuList>
-      <NavLink exact to={tabPaths.timeline}>
-        <Trans>Timeline</Trans>
-      </NavLink>
-      <NavLink exact to={tabPaths.communities}>
-        <Trans>All communities</Trans>
-      </NavLink>
-      <NavLink exact to={tabPaths.collections}>
-        <Trans>All collections</Trans>
-      </NavLink>
+      <MenuItem exact to={tabPaths.timeline}>
+        <div className="text-holder">
+          <Trans>
+            <Trans>Timeline</Trans>
+          </Trans>
+        </div>
+        <ButtonIcon className="icon-holder">
+          <UsersIcon size="24" />
+        </ButtonIcon>
+      </MenuItem>
+      <MenuItem exact to={tabPaths.communities}>
+        <div className="text-holder">
+          <Trans>All communities</Trans>
+        </div>
+        <ActivityIcon className="icon-holder">
+          <UsersIcon size="24" />
+        </ActivityIcon>
+      </MenuItem>
     </MenuList>
   </>
 );

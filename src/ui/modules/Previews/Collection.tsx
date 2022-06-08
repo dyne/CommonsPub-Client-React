@@ -8,6 +8,7 @@ import { SimpleLink } from 'ui/helpers/SimpleLink';
 import styled from 'ui/themes/styled';
 import { typography } from 'mn-constants';
 import { darken, ellipsis } from 'polished';
+import media from 'styled-media-query';
 
 export interface Props {
   link: SimpleLink;
@@ -83,7 +84,6 @@ export const Search = styled(Text)`
   padding: 8px;
   background-color: ${props => props.theme.colors.appInverse};
   font-weight: 700;
-  font-size: 11px;
   text-transform: uppercase;
   color: ${props => props.theme.colors.dark};
   border-top-left-radius: 4px;
@@ -99,10 +99,10 @@ const Meta = styled(Flex)`
 
 const Title = styled(Heading)`
   color: ${props => props.theme.colors.darker};
-  font-size: 16px;
   text-decoration: none;
   word-break: break-all;
   margin-top: 4px;
+  font-size: ${typography.size.m1};
   ${ellipsis('250px')};
 `;
 
@@ -113,14 +113,15 @@ const CollectionWrapper = styled(Box)`
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ececec;
+
+  ${media.lessThan('medium')`    
+            max-width: unset;
+        `};
 `;
 const Previews = styled(Box)`
   display: grid;
-  // grid-template-rows: 150px 90px;
   grid-template-rows: 150px;
   grid-template-areas: 'big big big';
-  // grid-template-areas: "big big big"
-  //                       "small small small ";
   column-gap: 4px;
   row-gap: 4px;
 `;
@@ -148,7 +149,6 @@ const Info = styled(Box)`
   margin: 8px;
 `;
 const TotResources = styled(Text)`
-  font-size: 13px;
   flex: 1;
 `;
 const Action = styled(Box)``;
@@ -156,7 +156,6 @@ const Action = styled(Box)``;
 const ActionText = styled(Text)`
   color: ${props => props.theme.colors.darker};
   font-weight: 600;
-  font-size: 13px;
 `;
 
 export const tempCollection: React.FC<Props> = ({
@@ -275,6 +274,9 @@ const ActionItem = styled(Flex)<{ isFollowing?: boolean; bordered?: boolean }>`
       props.isFollowing ? props.theme.colors.mediumdark : props.theme.colors.primary};
     border-color: ${props =>
       props.isFollowing ? props.theme.colors.mediumdark : props.theme.colors.primary};
+    div {
+      color: ${props => props.theme.colors.lightest};
+    }
   }
 `;
 
@@ -312,7 +314,6 @@ const ActionItem = styled(Flex)<{ isFollowing?: boolean; bordered?: boolean }>`
 // const Username = styled(Text)`
 //   color: ${props => props.theme.colors.mediumdark};
 //   flex: 1;
-//   font-size: 14px;
 //   text-transform: lowercase;
 // `;
 
@@ -342,7 +343,6 @@ const Infos = styled(Box)`
 `;
 // const Title = styled(Heading)`
 //   color: ${props => props.theme.colors.darker};
-//   font-size: 20px;
 //   text-decoration: none;
 //   word-break: break-all;
 //   margin-top: 8px;

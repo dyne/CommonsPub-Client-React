@@ -67,7 +67,7 @@ export const HeroCommunity: FC<Props> = ({ community: c }) => {
           <Title variant="heading" mt={0}>
             {c.name}
           </Title>
-          <Username fontSize={0}>@{c.fullName}</Username>
+          <Username>@{c.fullName}</Username>
           {c.summary && (
             <Box mt={2}>
               <Markdown>{c.summary}</Markdown>
@@ -142,6 +142,11 @@ const RightDd = styled(Box)`
   .dropdown {
     right: 0;
     left: auto;
+
+    ${media.lessThan('medium')`
+      right: initial;
+      left: 10px;
+  `}
   }
 `;
 
@@ -186,7 +191,6 @@ const Info = styled(Flex)`
 const Title = styled(Text)`
   color: ${props => props.theme.colors.darker};
   ${media.lessThan('medium')`
-font-size: 20px !important;
 `};
 `;
 
@@ -198,7 +202,6 @@ const Username = styled(Text)`
   color: ${props => props.theme.colors.mediumdark};
   font-weight: 500;
   text-transform: lowercase;
-  font-size: 14px;
 `;
 
 // const MembersTot = styled(NavLink)`

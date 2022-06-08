@@ -43,9 +43,9 @@ const Dialog = styled.div`
 
   ${media.lessThan('medium')`
     width: auto;
-    margin: 0;
     left: 8px;
     right: 8px;
+    margin: 0;
   `};
 `;
 
@@ -73,35 +73,46 @@ const Content = styled.div`
   ${clearFix()};
   font-family: ${props => props.theme.fontFamily};
 `;
-
 export const Container = styled.div`
   font-family: ${props => props.theme.fontFamily};
+  min-height: 300px;
+  overflow-y: auto;
+  max-height: 96vh;
+  padding-bottom: 20px;
 `;
+
 export const Actions = styled(Box)`
   ${clearFix()};
-  height: 60px;
-  padding-top: 10px;
-  padding-right: 10px;
+  padding: 0 16px;
   & button {
     float: right;
   }
 `;
 
+export const ActionsSimple = styled(Actions)`
+  ${clearFix()};
+  padding: 20px 0;
+`;
+
 export const CounterChars = styled.div`
-  float: right;
-  font-size: 11px;
+  position: absolute;
+  top: 2px;
+  right: 8px;
   text-transform: uppercase;
+  text-align: center;
   background: #d0d9db;
   padding: 2px 10px;
+  border-radius: 12px;
   font-weight: 600;
-  margin-top: 4px;
-  color: #32302e;
+  color: #fff;
   letter-spacing: 1px;
 `;
 
 export const ContainerForm = styled.div`
   flex: 1;
   ${clearFix()};
+  padding-top: 13px;
+  position: relative;
   input {
     height: 40px;
     background: white;
@@ -109,6 +120,7 @@ export const ContainerForm = styled.div`
     border: ${props => props.theme.colors.border};
   }
   textarea {
+    padding-top: 16px;
     line-height: 20px;
     background: white;
     border-radius: 2px;
@@ -124,7 +136,6 @@ export const Header = styled.div`
   & h5 {
     text-align: center !important;
     margin: 0 !important;
-    font-size: 18px;
   }
 `;
 

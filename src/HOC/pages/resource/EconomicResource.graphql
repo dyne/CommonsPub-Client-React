@@ -1,0 +1,158 @@
+query economicResource($id: ID!) {
+  economicResource(id: $id) {
+    id
+    trackingIdentifier
+    primaryAccountable {
+      id
+      name
+      image
+      relationshipsAsObject {
+        id
+        relationship {
+          id
+          inverseRoleLabel
+        }
+      }
+    }
+    name
+    note
+    image
+    stage {
+      id
+      name
+      note
+    }
+    contains {
+      image
+      track {
+        id
+        action {
+          id
+        }
+        fulfills {
+          effortQuantity {
+            id
+            hasUnit {
+              id
+              label
+              symbol
+            }
+          }
+        }
+
+      }
+    }
+    stage {
+      id
+      name
+      note
+    }
+    containedIn{
+      id
+      name
+      trace {
+        id
+        note
+      }
+      track {
+        id
+        note
+      }
+    }
+    currentLocation {
+      id
+      name
+      lat
+      long
+    }
+    lot {
+      id
+      expiryDate
+      batchNumber
+    }
+    trace {
+      id
+      note
+      action {
+        id
+      }
+    }
+    trace {
+      id
+      note
+      resourceQuantity {
+        id
+        hasUnit {
+          id
+          label
+        }
+        hasNumericalValue
+      }
+      resourceInventoriedAs {
+        id
+        name
+      }
+      toResourceInventoriedAs {
+        id
+        name
+      }
+      action {
+        id
+        label
+      }
+      provider {
+        id
+        name
+      }
+      receiver {
+        id
+        name
+      }
+    }
+    track {
+      id
+      note
+      hasPointInTime
+      resourceQuantity {
+        id
+        hasUnit {
+          id
+          label
+        }
+        hasNumericalValue
+      }
+      resourceInventoriedAs {
+        id
+        name
+      }
+      toResourceInventoriedAs {
+        id
+        name
+      }
+      action {
+        id
+        label
+      }
+      provider {
+        id
+        name
+      }
+      receiver {
+        id
+        name
+      }
+    }
+    unitOfEffort {
+      id
+      label
+    },
+    onhandQuantity {
+      id,
+      hasNumericalValue
+      hasUnit {
+        id
+        label
+      }
+    }
+  }
+}
